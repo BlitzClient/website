@@ -5,12 +5,11 @@
   <title>Fehler 654?!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      margin: 0;
-      padding: 0;
+      font-family: monospace;
       background: #111;
-      color: #fff;
-      font-family: 'Courier New', Courier, monospace;
+      color: white;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -21,121 +20,114 @@
     }
 
     h1 {
-      font-size: 5rem;
-      margin: 0;
+      font-size: 4rem;
+      margin-bottom: 10px;
       color: #ff6565;
       animation: glitch 1s infinite;
     }
 
     p {
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-    }
-
-    @keyframes glitch {
-      0% { text-shadow: 2px 0 red, -2px 0 cyan; }
-      20% { text-shadow: -2px 0 red, 2px 0 cyan; }
-      40% { text-shadow: 2px 0 red, -2px 0 cyan; }
-      60% { text-shadow: -2px 0 red, 2px 0 cyan; }
-      80% { text-shadow: 2px 0 red, -2px 0 cyan; }
-      100% { text-shadow: -2px 0 red, 2px 0 cyan; }
+      margin-bottom: 10px;
     }
 
     canvas {
-      background: #000;
       border: 2px solid #fff;
+      background: #000;
     }
 
-    button {
-      margin-top: 1rem;
-      padding: 10px 20px;
-      font-size: 1rem;
-      background: #ff6565;
-      border: none;
-      color: white;
-      cursor: pointer;
+    @keyframes glitch {
+      0%, 100% { text-shadow: -2px 0 red, 2px 0 cyan; }
+      50% { text-shadow: 2px 0 red, -2px 0 cyan; }
     }
   </style>
 </head>
 <body>
-
   <h1>654?!</h1>
-  <p>Diese Seite ist genauso verschwunden wie der Anfang der Schlange… 🐍</p>
-  <canvas id="gameCanvas" width="300" height="300"></canvas>
-  <button onclick="init()">Nochmal spielen</button>
+  <p>Die Seite ist weggesprungen – spring hinterher!</p>
+  <canvas id="game" width="600" height="200"></canvas>
 
   <script>
-    const canvas = document.getElementById("gameCanvas");
-    const ctx = canvas.getContext("2d");
+    const canvas = document.getElementById('game');
+    const ctx = canvas.getContext('2d');
 
-    const gridSize = 15;
-    const tileCount = canvas.width / gridSize;
+    let player = { x: 50, y: 150, width: 20, height: 20, vy: 0, jumping: false };
+    let gravity = 1.2;
+    let ground = 150;
+    let obstacles = [];
+    let speed = 3;
+    let score = 0;
 
-    let snake, food, dx, dy, gameInterval;
-
-    function init() {
-      snake = [{x: 7, y: 7}];
-      food = randomFood();
-      dx = 0;
-      dy = 0;
-      clearInterval(gameInterval);
-      gameInterval = setInterval(gameLoop, 100);
+    function spawnObstacle() {
+      obstacles.push({ x: canvas.width, y: ground, width: 20, height: 20 });
     }
 
-    function gameLoop() {
-      const head = {x: snake[0].x + dx, y: snake[0].y + dy};
-
-      // Game over
-      if (
-        head.x < 0 || head.x >= tileCount ||
-        head.y < 0 || head.y >= tileCount ||
-        snake.some(segment => segment.x === head.x && segment.y === head.y)
-      ) {
-        alert('Game Over! Deine Schlange hat sich 654-fach verschluckt.');
-        init();
-        return;
-      }
-
-      snake.unshift(head);
-      if (head.x === food.x && head.y === food.y) {
-        food = randomFood();
-      } else {
-        snake.pop();
-      }
-
-      draw();
-    }
-
-    function draw() {
-      ctx.fillStyle = "#000";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
+    function drawPlayer() {
       ctx.fillStyle = "#0f0";
-      snake.forEach(segment => {
-        ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize - 1, gridSize - 1);
+      ctx.fillRect(player.x, player.y, player.width, player.height);
+    }
+
+    function drawObstacles() {
+      ctx.fillStyle = "#f00";
+      obstacles.forEach(obs => {
+        ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+      });
+    }
+
+    function update() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Gravity
+      player.y += player.vy;
+      player.vy += gravity;
+
+      if (player.y > ground) {
+        player.y = ground;
+        player.vy = 0;
+        player.jumping = false;
+      }
+
+      // Move obstacles
+      obstacles.forEach(obs => {
+        obs.x -= speed;
       });
 
-      ctx.fillStyle = "#f00";
-      ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize - 1, gridSize - 1);
+      // Remove old obstacles
+      obstacles = obstacles.filter(obs => obs.x + obs.width > 0);
+
+      // Collision detection
+      obstacles.forEach(obs => {
+        if (
+          player.x < obs.x + obs.width &&
+          player.x + player.width > obs.x &&
+          player.y < obs.y + obs.height &&
+          player.y + player.height > obs.y
+        ) {
+          alert("💥 Du bist gegen 404 gerannt!\nVersuch's nochmal!");
+          document.location.reload();
+        }
+      });
+
+      // Score
+      score++;
+      ctx.fillStyle = "#fff";
+      ctx.fillText("Score: " + score, 10, 20);
+
+      drawPlayer();
+      drawObstacles();
     }
 
-    function randomFood() {
-      return {
-        x: Math.floor(Math.random() * tileCount),
-        y: Math.floor(Math.random() * tileCount)
-      };
-    }
-
-    window.addEventListener("keydown", e => {
-      switch (e.key) {
-        case "ArrowUp": if (dy === 0) { dx = 0; dy = -1; } break;
-        case "ArrowDown": if (dy === 0) { dx = 0; dy = 1; } break;
-        case "ArrowLeft": if (dx === 0) { dx = -1; dy = 0; } break;
-        case "ArrowRight": if (dx === 0) { dx = 1; dy = 0; } break;
+    // Jump
+    window.addEventListener('keydown', (e) => {
+      if (e.code === 'Space' && !player.jumping) {
+        player.vy = -20;
+        player.jumping = true;
       }
     });
 
-    init();
+    // Loop
+    setInterval(update, 30);
+    setInterval(spawnObstacle, 1500);
   </script>
 </body>
 </html>
+
