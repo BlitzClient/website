@@ -1,193 +1,81 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>News | BlitzClient</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    body {
-      background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
-      color: #fff;
-      overflow-x: hidden;
-    }
-
-    header {
-      background: #000;
-      padding: 1rem 0;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .logo img {
-      width: 40px;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 2rem;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #fff;
-      transition: color 0.3s ease;
-    }
-
-    nav a.active,
-    nav a:hover {
-      color: #00bcd4;
-    }
-
-    .news-section {
-      margin-top: 3rem;
-      animation: fadeIn 1.5s ease-in;
-    }
-
-    .news-section h1 {
-      text-align: center;
-      margin-bottom: 2rem;
-      font-size: 2.5rem;
-      color: #00bcd4;
-    }
-
-    .news-item {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 2rem;
-      border-radius: 10px;
-      margin-bottom: 2rem;
-      transition: transform 0.3s ease, background 0.3s ease;
-    }
-
-    .news-item:hover {
-      background: rgba(0, 188, 212, 0.1);
-      transform: scale(1.01);
-    }
-
-    .news-item h2 {
-      color: #00bcd4;
-      margin-bottom: 0.5rem;
-    }
-
-    .date {
-      font-size: 0.9rem;
-      color: #ccc;
-      margin-bottom: 1rem;
-    }
-
-    .news-item p,
-    .news-item ul {
-      margin-bottom: 1rem;
-      line-height: 1.6;
-    }
-
-    .news-item ul {
-      padding-left: 1.5rem;
-    }
-
-    .button {
-      display: inline-block;
-      background: #00bcd4;
-      color: #000;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s ease;
-    }
-
-    .button:hover {
-      background: #0097a7;
-    }
-
-    footer {
-      background: #000;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 4rem;
-      font-size: 0.9rem;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>News | BlitzClient</title>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="icon" type="image/ico" href="icons/favicon.ico" />
 </head>
+
 <body>
-  <header>
-    <div class="container nav-container">
-      <div class="logo">
-        <img src="icons/default.png" alt="BlitzClient Logo" />
-        <span>BlitzClient</span>
-      </div>
-      <nav>
-        <ul>
-          <li><a href="/index.html">Start</a></li>
-          <li><a href="/download.html">Download</a></li>
-          <li><a href="/news.html" class="active">News</a></li>
-          <li><a href="/shop.html" target="_blank">Shop</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+	<header id="header">
+		<div class="container nav-container">
+			<div class="logo">
+				<img src="icons/default.png" alt="BlitzClient Logo" />
+				<span>BlitzClient</span>
+			</div>
+			<nav>
+				<ul>
+					<li><a href="index.html">Start</a></li>
+					<li><a href="download.html">Download</a></li>
+					<li><a href="news.html" class="active">News</a></li>
+					<li><a href="shop.html">Shop</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
 
-  <main class="container">
-    <section class="news-section">
-      <h1>Neueste Nachrichten</h1>
+	<main class="container">
+		<section class="news-section fade-in-section">
+			<h1>Neueste Nachrichten</h1>
 
-      <article class="news-item">
-        <h2>Beta 0.1</h2>
-        <p class="date">20. April 2025</p>
-        <p>Die Beta 0.1 ist nach 2 Tagen Entwicklung draußen – aber man kann noch nicht viel tun. Das wird sich bald ändern, denn wir arbeiten fleißig an der 0.2. Bleibt gespannt!</p>
-        <a href="/download.html" class="button">Download für Linux</a>
-      </article>
+			<article class="news-item">
+				<h2>Beta 0.1</h2>
+				<p class="date">20. April 2025</p>
+				<p>Die Beta 0.1 ist nach 2 Tagen Entwicklung draußen – aber man kann noch nicht viel tun. Das wird sich
+					bald
+					ändern, denn wir arbeiten fleißig an der 0.2. Bleibt gespannt!</p>
+				<a href="download.html" class="button">Download für Linux</a>
+			</article>
 
-      <article class="news-item">
-        <h2>Beta 0.2 – Nices Design im Launcher</h2>
-        <p class="date">3. Mai 2025</p>
-        <p>Wir haben die neueste Beta-Version (0.2) mit vielen Verbesserungen veröffentlicht. Die wichtigsten Highlights:</p>
-        <ul>
-          <li>Download jetzt möglich für Windows, macOS, Linux und als .jar</li>
-          <li>Modernes Launcher-Design mit Microsoft-Login</li>
-          <li>Viele Bugfixes und Performance-Optimierungen</li>
-        </ul>
-        <a href="/download.html" class="button">Jetzt herunterladen</a>
-      </article>
+			<article class="news-item">
+				<h2>Beta 0.2 – Nices Design im Launcher</h2>
+				<p class="date">3. Mai 2025</p>
+				<p>Wir haben die neueste Beta-Version (0.2) mit vielen Verbesserungen veröffentlicht. Die wichtigsten
+					Highlights:</p>
+				<ul>
+					<li>Download jetzt möglich für Windows, macOS, Linux und als .jar</li>
+					<li>Modernes Launcher-Design mit Microsoft-Login</li>
+					<li>Viele Bugfixes und Performance-Optimierungen</li>
+				</ul>
+				<a href="download.html" class="button">Jetzt herunterladen</a>
+			</article>
 
-    </section>
-  </main>
+		</section>
+	</main>
 
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 BlitzClient. Alle Rechte vorbehalten.</p>
-    </div>
-  </footer>
+	<footer>
+		<div class="container">
+			<p>&copy; 2025 BlitzClient. Alle Rechte vorbehalten.</p>
+		</div>
+	</footer>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			// Check if user came from a different page
+			const referrer = document.referrer;
+			const currentHost = window.location.host;
+			const isFromSameSite = referrer.includes(currentHost);
+			const header = document.getElementById('header');
+
+			// Only add animation if coming from another page in the same site
+			if (isFromSameSite && referrer !== window.location.href) {
+				header.classList.add('fade-in-header');
+			}
+		});
+	</script>
 </body>
+
 </html>
