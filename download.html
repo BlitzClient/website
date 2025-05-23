@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Download | BlitzClient</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1c1c1c, #2e2e2e);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: #000;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      animation: slideDown 1s ease-in-out;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(0); }
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo img {
+      width: 40px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    nav a.active,
+    nav a:hover {
+      color: #00bcd4;
+    }
+
+    .download-section {
+      margin-top: 3rem;
+      text-align: center;
+      animation: fadeIn 2s ease-in;
+    }
+
+    .download-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .download-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #fff;
+      transition: transform 0.3s ease, background 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .download-card:hover {
+      transform: translateY(-5px);
+      background: rgba(0, 188, 212, 0.2);
+    }
+
+    .download-icon {
+      width: 48px;
+      margin-bottom: 1rem;
+    }
+
+    .versions-section {
+      margin: 4rem 0;
+      animation: fadeInUp 1.5s ease;
+    }
+
+    .version-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .version-table th,
+    .version-table td {
+      padding: 1rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .version-table th {
+      background: rgba(0, 188, 212, 0.3);
+    }
+
+    .version-table td a {
+      color: #00bcd4;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    footer {
+      background: #000;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @media (max-width: 768px) {
+      .download-grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <div class="logo">
+        <img src="icons/default.png" alt="BlitzClient Logo" />
+        <span>BlitzClient</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="/index.html">Start</a></li>
+          <li><a href="/download.html" class="active">Download</a></li>
+          <li><a href="/news.html">News</a></li>
+          <li><a href="/shop.html" target="_blank">Shop</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="download-section">
+      <h1>Direkt Download – Beta 0.2</h1>
+      <p>Wähle dein System:</p>
+      <div class="download-grid">
+        <a href="https://nightly.link/plainprince/BlitzLauncher/actions/runs/14822987714/BlitzLauncher-windows-latest.exe.zip" class="download-card">
+          <img src="icons/windows-icon.png" alt="Windows" class="download-icon">
+          <h3>Windows</h3>
+          <p>.exe Installer</p>
+        </a>
+        <a href="https://nightly.link/plainprince/BlitzLauncher/actions/runs/14822987714/BlitzLauncher-macos-apple-silicon.zip" class="download-card">
+          <img src="icons/macos-icon.png" alt="macOS Apple Silicon" class="download-icon">
+          <h3>macOS Apple Silicon</h3>
+          <p>.zip Datei</p>
+        </a>
+        <a href="https://nightly.link/plainprince/BlitzLauncher/actions/runs/14822987714/BlitzLauncher-macos-intel.zip" class="download-card">
+          <img src="icons/macos-icon.png" alt="macOS Intel" class="download-icon">
+          <h3>macOS Intel</h3>
+          <p>.zip Datei</p>
+        </a>
+        <a href="https://nightly.link/plainprince/BlitzLauncher/actions/runs/14822987714/BlitzLauncher-ubuntu-latest.AppImage.zip" class="download-card">
+          <img src="icons/linux-icon.png" alt="Linux" class="download-icon">
+          <h3>Linux</h3>
+          <p>AppImage</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="versions-section">
+      <h2>Alle Versionen</h2>
+      <table class="version-table">
+        <thead>
+          <tr>
+            <th>Version</th>
+            <th>Windows</th>
+            <th>macOS (Apple Silicon)</th>
+            <th>macOS (Intel)</th>
+            <th>Linux (AppImage)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Beta 0.2</td>
+            <td><a href="https://nightly.link/plainprince/BlitzLauncher/actions/runs/14822987714/BlitzLauncher-windows-latest.exe.zip">
+                <img src="icons/windows-icon.png" alt="Windows" class="download-icon"> Download</a></td>
+            <td><a href="https://nightly.link/plainprince/BlitzLauncher/actions/runs/14822987714/BlitzLauncher-macos-apple-silicon.zip">
+                <img src="icons/macos-icon.png" alt="macOS Apple Silicon" class="download-icon"> Download</a></td>
+            <td><a href="https://nightly.link/plainprince/BlitzLauncher/actions/runs/14822987714/BlitzLauncher-macos-intel.zip">
+                <img src="icons/macos-icon.png" alt="macOS Intel" class="download-icon"> Download</a></td>
+            <td><a href="https://nightly.link/plainprince/BlitzLauncher/actions/runs/14822987714/BlitzLauncher-ubuntu-latest.AppImage.zip">
+                <img src="icons/linux-icon.png" alt="Linux" class="download-icon"> Download</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 BlitzClient. Alle Rechte vorbehalten.</p>
+    </div>
+  </footer>
+</body>
+</html>
