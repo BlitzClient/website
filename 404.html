@@ -2,13 +2,13 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Fehler 654?!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: #0e0e0e;
+      background: #111;
       color: #fff;
       font-family: 'Courier New', Courier, monospace;
       display: flex;
@@ -17,18 +17,19 @@
       justify-content: center;
       height: 100vh;
       overflow: hidden;
+      text-align: center;
     }
 
     h1 {
-      font-size: 6rem;
+      font-size: 5rem;
       margin: 0;
       color: #ff6565;
       animation: glitch 1s infinite;
     }
 
     p {
-      font-size: 1.5rem;
-      margin: 1rem 0;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
     }
 
     @keyframes glitch {
@@ -41,18 +42,17 @@
     }
 
     canvas {
+      background: #000;
       border: 2px solid #fff;
-      margin-top: 20px;
-      background: #111;
     }
 
     button {
+      margin-top: 1rem;
+      padding: 10px 20px;
+      font-size: 1rem;
       background: #ff6565;
       border: none;
       color: white;
-      padding: 10px 20px;
-      font-size: 1rem;
-      margin-top: 20px;
       cursor: pointer;
     }
   </style>
@@ -60,45 +60,82 @@
 <body>
 
   <h1>654?!</h1>
-  <p>Ups! Diese Seite ist irgendwo zwischen 404 und total verrückt. 🌀</p>
-
-  <canvas id="gameCanvas" width="300" height="150"></canvas>
-  <button onclick="startGame()">Nochmal spielen</button>
+  <p>Diese Seite ist genauso verschwunden wie der Anfang der Schlange… 🐍</p>
+  <canvas id="gameCanvas" width="300" height="300"></canvas>
+  <button onclick="init()">Nochmal spielen</button>
 
   <script>
     const canvas = document.getElementById("gameCanvas");
     const ctx = canvas.getContext("2d");
 
-    let x = 20, y = 20, dx = 2, dy = 2, radius = 10;
-    let interval;
+    const gridSize = 15;
+    const tileCount = canvas.width / gridSize;
 
-    function drawBall() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.beginPath();
-      ctx.arc(x, y, radius, 0, Math.PI * 2);
-      ctx.fillStyle = "#ff6565";
-      ctx.fill();
-      ctx.closePath();
+    let snake, food, dx, dy, gameInterval;
 
-      if (x + dx > canvas.width - radius || x + dx < radius) dx = -dx;
-      if (y + dy > canvas.height - radius || y + dy < radius) dy = -dy;
-
-      x += dx;
-      y += dy;
+    function init() {
+      snake = [{x: 7, y: 7}];
+      food = randomFood();
+      dx = 0;
+      dy = 0;
+      clearInterval(gameInterval);
+      gameInterval = setInterval(gameLoop, 100);
     }
 
-    function startGame() {
-      x = Math.random() * 100 + 50;
-      y = Math.random() * 50 + 50;
-      dx = (Math.random() < 0.5 ? -1 : 1) * 2;
-      dy = (Math.random() < 0.5 ? -1 : 1) * 2;
+    function gameLoop() {
+      const head = {x: snake[0].x + dx, y: snake[0].y + dy};
 
-      clearInterval(interval);
-      interval = setInterval(drawBall, 16);
+      // Game over
+      if (
+        head.x < 0 || head.x >= tileCount ||
+        head.y < 0 || head.y >= tileCount ||
+        snake.some(segment => segment.x === head.x && segment.y === head.y)
+      ) {
+        alert('Game Over! Deine Schlange hat sich 654-fach verschluckt.');
+        init();
+        return;
+      }
+
+      snake.unshift(head);
+      if (head.x === food.x && head.y === food.y) {
+        food = randomFood();
+      } else {
+        snake.pop();
+      }
+
+      draw();
     }
 
-    startGame();
+    function draw() {
+      ctx.fillStyle = "#000";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#0f0";
+      snake.forEach(segment => {
+        ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize - 1, gridSize - 1);
+      });
+
+      ctx.fillStyle = "#f00";
+      ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize - 1, gridSize - 1);
+    }
+
+    function randomFood() {
+      return {
+        x: Math.floor(Math.random() * tileCount),
+        y: Math.floor(Math.random() * tileCount)
+      };
+    }
+
+    window.addEventListener("keydown", e => {
+      switch (e.key) {
+        case "ArrowUp": if (dy === 0) { dx = 0; dy = -1; } break;
+        case "ArrowDown": if (dy === 0) { dx = 0; dy = 1; } break;
+        case "ArrowLeft": if (dx === 0) { dx = -1; dy = 0; } break;
+        case "ArrowRight": if (dx === 0) { dx = 1; dy = 0; } break;
+      }
+    });
+
+    init();
   </script>
-
 </body>
 </html>
