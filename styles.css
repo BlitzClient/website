@@ -192,6 +192,9 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.25rem;
 }
 
 .download-card:hover {
@@ -200,8 +203,7 @@ footer {
 }
 
 .download-icon {
-  width: 48px;
-  margin-bottom: 1rem;
+  width: 2rem;
 }
 
 .version-table {

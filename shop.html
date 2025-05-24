@@ -6,98 +6,121 @@
   <title>Shop | BlitzClient</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/ico" href="icons/favicon.ico" />
-  <style>
+  <!-- <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      background: #0f0f0f;
-      color: #f0f0f0;
-      overflow-x: hidden;
-    }
-    .shop h1 {
-      text-align: center;
-      font-size: 3rem;
-      margin-top: 2rem;
-      color: #00bcd4;
-      animation: fadeInDown 1s ease-in-out;
-    }
-    .shop p {
-      text-align: center;
-      color: #ccc;
-      margin-bottom: 3rem;
-      animation: fadeInUp 1s ease-in-out;
-    }
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      padding: 2rem;
-      animation: fadeIn 2s ease-in-out;
-    }
-    .product-card {
-      background: #1a1a1a;
-      padding: 1.5rem;
-      border-radius: 1rem;
-      text-align: center;
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .product-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
-    }
-    .product-card img {
-      width: 100px;
-      margin-bottom: 1rem;
-    }
-    .product-card h3 {
-      margin: 1rem 0 0.5rem;
-      color: #00e5ff;
-    }
-    .product-card p {
-      color: #aaa;
-      font-size: 0.95rem;
-    }
-    .price {
-      display: block;
-      margin: 1rem 0;
-      font-weight: bold;
-      font-size: 1.2rem;
-      color: #4caf50;
-    }
-    .buy-button {
-      background: #00bcd4;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 2rem;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-    .buy-button:hover {
-      background: #0097a7;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+      color: #222;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    header, footer {
+      background-color: #0cc;
+      color: white;
+      padding: 1em 0;
     }
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
     }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+
+    .logo {
+      display: flex;
+      align-items: center;
     }
-  </style>
+
+    .logo img {
+      width: 40px;
+      margin-right: 10px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      padding: 0;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav ul li a.active {
+      text-decoration: underline;
+    }
+
+    h1, h3 {
+      color: #008b8b;
+    }
+
+    .shop {
+      padding: 2em 0;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2em;
+      margin-top: 2em;
+    }
+
+    .product-card {
+      background-color: white;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      padding: 1em;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 1em;
+    }
+
+    .price {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #007d7d;
+    }
+
+    .buy-button {
+      display: inline-block;
+      margin-top: 1em;
+      padding: 0.7em 1.4em;
+      background-color: #00c2c2;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .buy-button:hover {
+      background-color: #00aaaa;
+    }
+
+    footer p {
+      margin: 0;
+      text-align: center;
+    }
+  </style> -->
 </head>
 <body>
   <header id="header">
     <div class="container nav-container">
       <div class="logo">
-        <img src="icons/default.png" alt="BlitzClient Logo" />
+        <img src="icons/default.png" alt="BlitzClient Logo">
         <span>BlitzClient</span>
       </div>
       <nav>
@@ -111,87 +134,47 @@
     </div>
   </header>
 
-  <main class="shop">
+  <main>
+    <section class="hero">
+      <h1>Shop - Coming Soon!</h1>
+      <p>Unser Shop ist derzeit in der Entwicklung. Bald findest du hier exklusive BlitzClient Produkte und Premium-Features!</p>
+    </section>
+  </main>
+
+  <!-- <main class="shop">
     <div class="container">
-      <div class="coming-soon">
-        <h1>Coming Soon</h1>
-        <p>Unser Shop ist derzeit in Entwicklung. Bald findest du hier exklusive Features, Capes und mehr!</p>
+      <h1>BlitzClient Shop</h1>
+      <p>Unterstütze die Entwicklung & sichere dir exklusive Vorteile mit BlitzCoins!</p>
+
+      <div class="product-grid">
+        <div class="product-card">
+          <img src="shop/blitzplus.png" alt="BlitzClient+">
+          <h3>BlitzClient+</h3>
+          <p>Premium-Zugang zu Features, Mods und mehr.</p>
+          <span class="price">1.000 BlitzCoins (~10 €)</span>
+          <a href="https://blitzclient.gumroad.com/l/blitzplus" class="buy-button" target="_blank">Jetzt upgraden</a>
+        </div>
+
+        <div class="product-card">
+          <img src="shop/cape.png" alt="Exklusives Cape">
+          <h3>Exklusives Cape</h3>
+          <p>Zeige deinen Support auf jedem Server.</p>
+          <span class="price">500 BlitzCoins (~5 €)</span>
+          <a href="https://blitzclient.gumroad.com/l/cape" class="buy-button" target="_blank">Kaufen</a>
+        </div>
+
+        <div class="product-card">
+          <img src="shop/badge.png" alt="Supporter Badge">
+          <h3>Supporter Badge</h3>
+          <p>Ein kleines Symbol für große Unterstützung.</p>
+          <span class="price">300 BlitzCoins (~3 €)</span>
+          <a href="https://blitzclient.gumroad.com/l/badge" class="buy-button" target="_blank">Kaufen</a>
+        </div>
       </div>
 
-      <!-- Original shop content (commented out)
-      <section class="fade-in-section">
-        <h1>BlitzClient Shop</h1>
-        <p>Unterstütze die Entwicklung & hol dir exklusive Features!</p>
-
-        <div class="product-grid">
-          <div class="product-card">
-            <img src="icons/default.png" alt="Blitz Cape" />
-            <h3>Exklusives Cape</h3>
-            <p>Zeige Stil auf jedem Server mit unserem einzigartigen Cape-Design.</p>
-            <span class="price">5 €</span>
-            <a href="https://blitzclient.gumroad.com/l/cape" class="buy-button">Kaufen</a>
-          </div>
-
-          <div class="product-card">
-            <img src="icons/default-64.png" alt="Supporter Badge" />
-            <h3>Supporter Badge</h3>
-            <p>Ein Zeichen deiner Unterstützung im Client und auf unseren Servern.</p>
-            <span class="price">3 €</span>
-            <a href="https://blitzclient.gumroad.com/l/badge" class="buy-button">Kaufen</a>
-          </div>
-
-          <div class="product-card">
-            <img src="icons/Jar.png" alt="BlitzClient+" />
-            <h3>BlitzClient+</h3>
-            <p>Premium-Version mit Extra-Mods, mehr Features und unbegrenzten Einstellungen.</p>
-            <span class="price">10 €</span>
-            <a href="https://blitzclient.gumroad.com/l/blitzplus" class="buy-button">Jetzt upgraden</a>
-          </div>
-        </div>
-      </section>
-
-      <section class="fade-in-section">
-        <h2>Abonnements</h2>
-        <p>Bleibe immer auf dem neuesten Stand mit unseren Abonnements</p>
-
-        <div class="product-grid">
-          <div class="product-card">
-            <h3>BlitzClient Pro</h3>
-            <p>Monatliches Update-Abo mit allen neuen Features sofort.</p>
-            <ul style="text-align: left; padding-left: 20px; margin: 15px 0;">
-              <li>Frühzeitiger Zugang zu Updates</li>
-              <li>Exklusive Pro-Mods</li>
-              <li>Prioritäts-Support</li>
-            </ul>
-            <span class="price">3,99 € / Monat</span>
-            <a href="https://blitzclient.gumroad.com/" class="buy-button">Abonnieren</a>
-          </div>
-
-          <div class="product-card">
-            <h3>BlitzClient Ultimate</h3>
-            <p>Alles inklusive: Pro-Features + alle Kosmetika + Boost auf unseren Servern.</p>
-            <ul style="text-align: left; padding-left: 20px; margin: 15px 0;">
-              <li>Alle Pro-Features</li>
-              <li>Alle kosmtischen Items</li>
-              <li>Server-Boost & VIP-Status</li>
-              <li>Zugang zur Entwickler-Discord</li>
-            </ul>
-            <span class="price">9,99 € / Monat</span>
-            <a href="https://blitzclient.gumroad.com/" class="buy-button">Abonnieren</a>
-          </div>
-        </div>
-      </section>
-
-      <section class="fade-in-section">
-        <h2>Unser Versprechen</h2>
-        <div style="background: rgba(0, 188, 212, 0.1); padding: 20px; border-radius: 10px; margin: 30px 0;">
-          <p>Alle Einnahmen werden direkt in die Weiterentwicklung des BlitzClient investiert. Mit deinem Kauf unterstützt du unser kleines Entwicklerteam und hilfst uns, den Client stetig zu verbessern.</p>
-          <p style="margin-top: 15px;">Solltest du mit deinem Kauf nicht zufrieden sein, bieten wir eine 14-tägige Geld-zurück-Garantie.</p>
-        </div>
-      </section>
-      -->
+      <p style="margin-top: 2em;">Rabatte mit Codes: <strong>NEUESJAHR (20%)</strong>, <strong>GRINDATTACK (15%)</strong>, <strong>KNATTER654 (5%)</strong> – Nur für BlitzClient+</p>
     </div>
-  </main>
+  </main> -->
 
   <footer>
     <div class="container">
