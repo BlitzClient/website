@@ -29,7 +29,7 @@
 
 	<main>
 		<section class="hero">
-			<h1>Willkommen bei BlitzClient</h1>
+			<h1>Willkommen bei BlitzClient ⚡</h1>
 			<p>Dein neuer FPS-starker Minecraft-Client mit Stil, Performance und Updates!</p>
 			<a href="download.html" class="cta-button">Jetzt Herunterladen</a>
 		</section>
@@ -49,14 +49,12 @@
 			<div class="container">
 				<h2>Features</h2>
 				<ul>
-					<li>Erhöhte FPS durch Optimierungen</li>
-					<li>Einfacher Installer für alle Plattformen</li>
-					<li>Regelmäßige Updates & Community-Feedback</li>
+					<li>🎮 Erhöhte FPS durch Optimierungen</li>
+					<li>🧩 Einfacher Installer für alle Plattformen</li>
+					<li>🚀 Regelmäßige Updates & Community-Feedback</li>
 				</ul>
 			</div>
 		</section>
-
-		<!-- füge Beispiel-videos hinzu -->
 
 		<section class="download-section fade-in-section">
 			<div class="container">
@@ -79,28 +77,56 @@
 				or personal data.
 				All authentication occurs locally on the user&apos;s device and is fully initiated by the user.
 			</p>
-			<li><a href="impressum.html" class="active">Impressum</a></li>
-			<li><a href="datenschutz.html" class="active">Datenschutz</a></li>
-			<li><a href="nutzung.html" class="active">Nutzungsbedingungen</a></li>
-			
+			<ul>
+				<li><a href="impressum.html" class="active">Impressum</a></li>
+				<li><a href="datenschutz.html" class="active">Datenschutz</a></li>
+				<li><a href="nutzung.html" class="active">Nutzungsbedingungen</a></li>
+			</ul>
 		</div>
 	</footer>
 
+	<!-- 🍪 Cookie Consent Popup -->
+	<div id="cookie-popup-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9998;"></div>
+
+	<div id="cookie-popup" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:#1e1e1e; color:#fff; padding:30px; border-radius:14px; box-shadow:0 0 25px rgba(0,0,0,0.6); z-index:9999; max-width:400px; text-align:center; font-family: sans-serif;">
+		<h3 style="margin-top:0;">🍪 Cookies gefällig?</h3>
+		<p style="margin:15px 0;">
+			Wir verwenden Cookies, um BlitzClient für dich 🍫 schneller, sicherer und besser zu machen.<br>
+			<a href="datenschutz.html" style="color:#0af;">Mehr Infos findest du hier.</a>
+		</p>
+		<div style="margin-top:20px;">
+			<button onclick="setConsent(true)" style="padding:10px 18px; margin: 5px; background:#0af; border:none; border-radius:6px; color:#fff; cursor:pointer;">✅ Ja, alles akzeptieren</button>
+			<button onclick="setConsent(false)" style="padding:10px 18px; margin: 5px; background:#555; border:none; border-radius:6px; color:#fff; cursor:pointer;">🚫 Nur das Nötigste</button>
+		</div>
+	</div>
+
+	<script>
+		function setConsent(accepted) {
+			localStorage.setItem("cookieConsent", accepted ? "accepted" : "essential");
+			document.getElementById("cookie-popup").style.display = "none";
+			document.getElementById("cookie-popup-overlay").style.display = "none";
+		}
+
+		window.addEventListener("load", () => {
+			const consent = localStorage.getItem("cookieConsent");
+			if (!consent) {
+				document.getElementById("cookie-popup").style.display = "block";
+				document.getElementById("cookie-popup-overlay").style.display = "block";
+			}
+		});
+	</script>
+
 	<script>
 		document.addEventListener('DOMContentLoaded', () => {
-			// Check if user came from a different page
 			const referrer = document.referrer;
 			const currentHost = window.location.host;
 			const isFromSameSite = referrer.includes(currentHost);
 			const header = document.getElementById('header');
 
-			// Only add animation if coming from another page in the same site
-			// or if it's a direct load of the site
 			if (isFromSameSite && referrer !== window.location.href) {
 				header.classList.add('fade-in-header');
 			}
 
-			// IntersectionObserver for fade-in sections
 			const observer = new IntersectionObserver(entries => {
 				entries.forEach(entry => {
 					if (entry.isIntersecting) {
@@ -116,4 +142,4 @@
 	</script>
 </body>
 
-</html> 
+</html>
