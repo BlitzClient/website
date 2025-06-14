@@ -7,6 +7,150 @@
 	<title>BlitzClient</title>
 	<link rel="stylesheet" href="styles.css">
 	<link rel="icon" type="image/ico" href="icons/favicon.ico" />
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+	<style>
+		/* === Reset & Base === */
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-family: 'Montserrat', sans-serif;
+		}
+
+		body {
+			background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+			color: #f5f5f5;
+			overflow-x: hidden;
+		}
+
+		a {
+			color: #00ffff;
+			text-decoration: none;
+			transition: color 0.3s;
+		}
+
+		a:hover {
+			color: #ff8800;
+		}
+
+		.container {
+			width: 90%;
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+
+		/* === Header === */
+		header {
+			background: rgba(0, 0, 0, 0.7);
+			backdrop-filter: blur(8px);
+			position: sticky;
+			top: 0;
+			z-index: 1000;
+			padding: 1rem 0;
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+		}
+
+		.logo {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+
+		.logo img {
+			height: 40px;
+		}
+
+		nav ul {
+			display: flex;
+			list-style: none;
+			gap: 1.5rem;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.nav-container {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.active {
+			color: #ff8800;
+			font-weight: bold;
+		}
+
+		/* === Hero === */
+		.hero {
+			text-align: center;
+			padding: 6rem 1rem;
+			background: radial-gradient(circle, #222, #111);
+		}
+
+		.hero h1 {
+			font-size: 3rem;
+			margin-bottom: 1rem;
+		}
+
+		.cta-button {
+			background: #00ffff;
+			color: #000;
+			padding: 0.8rem 2rem;
+			border-radius: 50px;
+			font-weight: bold;
+			transition: 0.3s ease;
+			margin-top: 1rem;
+			display: inline-block;
+		}
+
+		.cta-button:hover {
+			background: #ff8800;
+			color: #fff;
+		}
+
+		/* === Sections === */
+		section {
+			padding: 4rem 0;
+			text-align: center;
+		}
+
+		.features ul {
+			list-style: none;
+			padding: 0;
+		}
+
+		.features li {
+			margin: 1rem 0;
+			font-size: 1.2rem;
+		}
+
+		/* === Footer === */
+		footer {
+			background: #111;
+			padding: 2rem 0;
+			font-size: 0.9rem;
+			color: #ccc;
+		}
+
+		footer ul {
+			list-style: none;
+			display: flex;
+			justify-content: center;
+			gap: 2rem;
+			margin-top: 1rem;
+		}
+
+		/* === Fade-In === */
+		.fade-in-section {
+			opacity: 0;
+			transform: translateY(20px);
+			transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+		}
+
+		.fade-in-section.visible {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	</style>
 </head>
 
 <body>
@@ -69,64 +213,20 @@
 		<div class="container">
 			<p>&copy; 2025 BlitzClient. Alle Rechte vorbehalten.</p>
 			<p>
-				BlitzLauncher is an unofficial, open-source Minecraft launcher.
-				This project is not affiliated with Mojang, Microsoft, or Minecraft.
-				All rights to Minecraft, Mojang, and Microsoft assets and trademarks belong to their respective owners.
-
-				The login functionality uses official Microsoft OAuth2 services and does not store any login credentials
-				or personal data.
-				All authentication occurs locally on the user&apos;s device and is fully initiated by the user.
+				BlitzLauncher ist ein inoffizieller, quelloffener Minecraft-Launcher.<br>
+				Dieses Projekt ist nicht mit Mojang, Microsoft oder Minecraft verbunden.<br>
+				Alle Rechte an Minecraft, Mojang und Microsoft liegen bei den jeweiligen Eigentümern.
 			</p>
 			<ul>
-				<li><a href="impressum.html" class="active">Impressum</a></li>
-				<li><a href="datenschutz.html" class="active">Datenschutz</a></li>
-				<li><a href="nutzung.html" class="active">Nutzungsbedingungen</a></li>
+				<li><a href="impressum.html">Impressum</a></li>
+				<li><a href="datenschutz.html">Datenschutz</a></li>
+				<li><a href="nutzung.html">Nutzung</a></li>
 			</ul>
 		</div>
 	</footer>
 
-	<!-- 🍪 Cookie Consent Popup -->
-	<div id="cookie-popup-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9998;"></div>
-
-	<div id="cookie-popup" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:#1e1e1e; color:#fff; padding:30px; border-radius:14px; box-shadow:0 0 25px rgba(0,0,0,0.6); z-index:9999; max-width:400px; text-align:center; font-family: sans-serif;">
-		<h3 style="margin-top:0;">🍪 Cookies gefällig?</h3>
-		<p style="margin:15px 0;">
-			Wir verwenden Cookies, um BlitzClient für dich 🍫 schneller, sicherer und besser zu machen.<br>
-			<a href="datenschutz.html" style="color:#0af;">Mehr Infos findest du hier.</a>
-		</p>
-		<div style="margin-top:20px;">
-			<button onclick="setConsent(true)" style="padding:10px 18px; margin: 5px; background:#0af; border:none; border-radius:6px; color:#fff; cursor:pointer;">✅ Ja, alles akzeptieren</button>
-			<button onclick="setConsent(false)" style="padding:10px 18px; margin: 5px; background:#555; border:none; border-radius:6px; color:#fff; cursor:pointer;">🚫 Nur das Nötigste</button>
-		</div>
-	</div>
-
-	<script>
-		function setConsent(accepted) {
-			localStorage.setItem("cookieConsent", accepted ? "accepted" : "essential");
-			document.getElementById("cookie-popup").style.display = "none";
-			document.getElementById("cookie-popup-overlay").style.display = "none";
-		}
-
-		window.addEventListener("load", () => {
-			const consent = localStorage.getItem("cookieConsent");
-			if (!consent) {
-				document.getElementById("cookie-popup").style.display = "block";
-				document.getElementById("cookie-popup-overlay").style.display = "block";
-			}
-		});
-	</script>
-
 	<script>
 		document.addEventListener('DOMContentLoaded', () => {
-			const referrer = document.referrer;
-			const currentHost = window.location.host;
-			const isFromSameSite = referrer.includes(currentHost);
-			const header = document.getElementById('header');
-
-			if (isFromSameSite && referrer !== window.location.href) {
-				header.classList.add('fade-in-header');
-			}
-
 			const observer = new IntersectionObserver(entries => {
 				entries.forEach(entry => {
 					if (entry.isIntersecting) {
