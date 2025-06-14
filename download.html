@@ -2,147 +2,313 @@
 <html lang="de">
 
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Download | BlitzClient</title>
-	<link rel="stylesheet" href="styles.css">
-	<link rel="icon" type="image/ico" href="icons/favicon.ico" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Download | BlitzClient</title>
+  <link rel="icon" type="image/ico" href="icons/favicon.ico" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0e0e10;
+      color: #ffffff;
+      font-family: 'Orbitron', sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: #00ffff;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #ffaa00;
+    }
+
+    header {
+      background-color: #121212;
+      padding: 1rem 0;
+      border-bottom: 2px solid #00ffff;
+      animation: slideDown 0.8s ease;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    .logo span {
+      font-size: 1.5rem;
+      color: #ffaa00;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      font-size: 1rem;
+      padding: 0.4rem 0.6rem;
+      border-radius: 5px;
+    }
+
+    nav a.active,
+    nav a:hover {
+      background-color: #ffaa00;
+      color: #000;
+    }
+
+    .download-section {
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .download-section h1 {
+      font-size: 2.5rem;
+      color: #ffaa00;
+      margin-bottom: 1rem;
+    }
+
+    .download-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .download-card {
+      background: linear-gradient(145deg, #1c1c1e, #0c0c0d);
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255, 170, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .download-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+    }
+
+    .download-icon {
+      width: 64px;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+
+    .download-card h3 {
+      color: #00ffff;
+      margin-bottom: 0.5rem;
+    }
+
+    .versions-section {
+      margin: 4rem 0;
+    }
+
+    .versions-section h2 {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #ffaa00;
+    }
+
+    .version-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #1a1a1c;
+    }
+
+    .version-table th,
+    .version-table td {
+      padding: 1rem;
+      text-align: center;
+      border: 1px solid #333;
+    }
+
+    .version-table th {
+      background-color: #222;
+      color: #00ffff;
+    }
+
+    .version-table td a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    footer {
+      background-color: #111;
+      padding: 2rem 0;
+      color: #888;
+      font-size: 0.85rem;
+    }
+
+    footer p,
+    footer li {
+      margin-bottom: 0.5rem;
+    }
+
+    footer a {
+      color: #ffaa00;
+    }
+
+    .fade-in-header {
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s forwards;
+      animation-delay: 0.3s;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 1rem;
+      }
+
+      .download-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
-	<header id="header">
-		<div class="container nav-container">
-			<div class="logo">
-				<img src="icons/default.png" alt="BlitzClient Logo" />
-				<span>BlitzClient</span>
-			</div>
-			<nav>
-				<ul>
-					<li><a href="index.html">Start</a></li>
-					<li><a href="download.html" class="active">Download</a></li>
-					<li><a href="news.html">News</a></li>
-					<li><a href="shop.html">Shop</a></li>
-				</ul>
-			</nav>
-		</div>
-	</header>
+  <header id="header">
+    <div class="container nav-container">
+      <div class="logo">
+        <img src="icons/default.png" alt="BlitzClient Logo" />
+        <span>BlitzClient</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Start</a></li>
+          <li><a href="download.html" class="active">Download</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="shop.html">Shop</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-	<main class="container">
-		<section class="download-section fade-in-section">
-			<h1>Direkt Download – Beta 0.3</h1>
-			<p>Wähle dein System:</p>
-			<div class="download-grid">
-				<a href="https://nightly.link/plainprince/BlitzLauncher/actions/runs/14822987714/BlitzLauncher-windows-latest.exe.zip"
-					class="download-card">
-					<img src="icons/Windows.png" alt="Windows" class="download-icon">
-					<h3>Windows</h3>
-					<p>.exe Installer</p>
-				</a>
-				<a href="https://nightly.link/plainprince/BlitzLauncher/actions/runs/14822987714/BlitzLauncher-macos-apple-silicon.zip"
-					class="download-card">
-					<img src="icons/Mac.png" alt="macOS Apple Silicon" class="download-icon">
-					<h3>macOS Apple Silicon</h3>
-					<p>.zip Datei</p>
-				</a>
-				<a href="https://nightly.link/plainprince/BlitzLauncher/actions/runs/14822987714/BlitzLauncher-macos-intel.zip"
-					class="download-card">
-					<img src="icons/Mac.png" alt="macOS Intel" class="download-icon">
-					<h3>macOS Intel</h3>
-					<p>.zip Datei</p>
-				</a>
-				<a href="https://nightly.link/plainprince/BlitzLauncher/actions/runs/14822987714/BlitzLauncher-ubuntu-latest.AppImage.zip"
-					class="download-card">
-					<img src="icons/ubuntu-logo.png" alt="Ubuntu" class="download-icon">
-					<h3>Linux</h3>
-					<p>AppImage</p>
-				</a>
-			</div>
-		</section>
+  <main class="container">
+    <section class="download-section fade-in-section">
+      <h1>Direkt Download – Beta 0.3</h1>
+      <p>Wähle dein System:</p>
+      <div class="download-grid">
+        <a href="https://nightly.link/plainprince/BlitzLauncher/actions/runs/14822987714/BlitzLauncher-windows-latest.exe.zip"
+          class="download-card">
+          <img src="icons/Windows.png" alt="Windows" class="download-icon" />
+          <h3>Windows</h3>
+          <p>.exe Installer</p>
+        </a>
+        <a href="https://nightly.link/plainprince/BlitzLauncher/actions/runs/14822987714/BlitzLauncher-macos-apple-silicon.zip"
+          class="download-card">
+          <img src="icons/Mac.png" alt="macOS Apple Silicon" class="download-icon" />
+          <h3>macOS Apple Silicon</h3>
+          <p>.zip Datei</p>
+        </a>
+        <a href="https://nightly.link/plainprince/BlitzLauncher/actions/runs/14822987714/BlitzLauncher-macos-intel.zip"
+          class="download-card">
+          <img src="icons/Mac.png" alt="macOS Intel" class="download-icon" />
+          <h3>macOS Intel</h3>
+          <p>.zip Datei</p>
+        </a>
+        <a href="https://nightly.link/plainprince/BlitzLauncher/actions/runs/14822987714/BlitzLauncher-ubuntu-latest.AppImage.zip"
+          class="download-card">
+          <img src="icons/ubuntu-logo.png" alt="Ubuntu" class="download-icon" />
+          <h3>Linux</h3>
+          <p>AppImage</p>
+        </a>
+      </div>
+    </section>
 
-		<section class="versions-section fade-in-section">
-			<h2>Alle Versionen</h2>
-			<table class="version-table">
-				<thead>
-					<tr>
-						<th>Version</th>
-						<th>Windows</th>
-						<th>macOS (Apple Silicon)</th>
-						<th>macOS (Intel)</th>
-						<th>Linux (AppImage)</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Beta 0.2</td>
-						<td><a
-								href="https://nightly.link/plainprince/BlitzLauncher/actions/runs/14822987714/BlitzLauncher-windows-latest.exe.zip">
-								<img src="icons/Windows.png" alt="Windows" class="download-icon"> Download</a></td>
-						<td><a
-								href="https://nightly.link/plainprince/BlitzLauncher/actions/runs/14822987714/BlitzLauncher-macos-apple-silicon.zip">
-								<img src="icons/Mac.png" alt="macOS Apple Silicon" class="download-icon"> Download</a>
-						</td>
-						<td><a
-								href="https://nightly.link/plainprince/BlitzLauncher/actions/runs/14822987714/BlitzLauncher-macos-intel.zip">
-								<img src="icons/Mac.png" alt="macOS Intel" class="download-icon"> Download</a></td>
-						<td><a
-								href="https://nightly.link/plainprince/BlitzLauncher/actions/runs/14822987714/BlitzLauncher-ubuntu-latest.AppImage.zip">
-								<img src="icons/ubuntu-logo.png" alt="Ubuntu" class="download-icon"> Download</a></td>
-					</tr>
-					<tr>
-						<td>Beta 0.3</td>
-						<td><a
-								href="https://nightly.link/plainprince/BlitzLauncher/actions/runs/15300057741/BlitzLauncher-windows-latest.exe.zip">
-								<img src="icons/Windows.png" alt="Windows" class="download-icon"> Download</a></td>
-						<td><a
-								href="https://nightly.link/plainprince/BlitzLauncher/actions/runs/15300057741/BlitzLauncher-macos-apple-silicon.zip">
-								<img src="icons/Mac.png" alt="macOS Apple Silicon" class="download-icon"> Download</a>
-						</td>
-						<td><a
-								href="https://nightly.link/plainprince/BlitzLauncher/actions/runs/15300057741/BlitzLauncher-macos-intel.zip">
-								<img src="icons/Mac.png" alt="macOS Intel" class="download-icon"> Download</a></td>
-						<td><a
-								href="https://nightly.link/plainprince/BlitzLauncher/actions/runs/15300057741/BlitzLauncher-ubuntu-latest.AppImage.zip">
-								<img src="icons/ubuntu-logo.png" alt="Ubuntu" class="download-icon"> Download</a></td>
-					</tr>
-				</tbody>
-			</table>
-		</section>
-	</main>
+    <section class="versions-section fade-in-section">
+      <h2>Alle Versionen</h2>
+      <table class="version-table">
+        <thead>
+          <tr>
+            <th>Version</th>
+            <th>Windows</th>
+            <th>macOS (Apple Silicon)</th>
+            <th>macOS (Intel)</th>
+            <th>Linux (AppImage)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Beta 0.2</td>
+            <td><a
+                href="https://nightly.link/plainprince/BlitzLauncher/actions/runs/14822987714/BlitzLauncher-windows-latest.exe.zip"><img
+                  src="icons/Windows.png" alt="Windows" class="download-icon" /> Download</a></td>
+            <td><a
+                href="https://nightly.link/plainprince/BlitzLauncher/actions/runs/14822987714/BlitzLauncher-macos-apple-silicon.zip"><img
+                  src="icons/Mac.png" alt="macOS Apple Silicon" class="download-icon" /> Download</a></td>
+            <td><a
+                href="https://
 
-	<footer>
-		<div class="container">
-			<p>&copy; 2025 BlitzClient. Alle Rechte vorbehalten.</p>
-			<p>
-				BlitzLauncher is an unofficial, open-source Minecraft launcher.
-				This project is not affiliated with Mojang, Microsoft, or Minecraft.
-				All rights to Minecraft, Mojang, and Microsoft assets and trademarks belong to their respective owners.
-
-				The login functionality uses official Microsoft OAuth2 services and does not store any login credentials
-				or personal data.
-				All authentication occurs locally on the user&apos;s device and is fully initiated by the user.
-			</p>
-			<p>This website and launcher do not collect or store any personal data.
-				All login procedures use Microsoft&apos;s official OAuth2 endpoints, and no passwords or tokens are stored by BlitzLauncher or its developers.</p>
-			<li><a href="impressum.html" class="active">Impressum</a></li>
-			<li><a href="datenschutz.html" class="active">Datenschutz</a></li>
-			<li><a href="nutzung.html" class="active">Nutzungsbedingungen</a></li>
-		</div>
-	</footer>
-
-	<script>
-		document.addEventListener('DOMContentLoaded', () => {
-			// Check if user came from a different page
-			const referrer = document.referrer;
-			const currentHost = window.location.host;
-			const isFromSameSite = referrer.includes(currentHost);
-			const header = document.getElementById('header');
-
-			// Only add animation if coming from another page in the same site
-			if (isFromSameSite && referrer !== window.location.href) {
-				header.classList.add('fade-in-header');
-			}
-		});
-	</script>
-</body>
-
-</html>
