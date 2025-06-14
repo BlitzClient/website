@@ -2,125 +2,276 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Shop | BlitzClient</title>
-  <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/ico" href="icons/favicon.ico" />
-  <!-- <style>
+  <style>
+    /* Grundlegendes Reset & Schrift */
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f9f9f9;
-      color: #222;
+      background: #0a161c; /* Dunkler Hintergrund */
+      color: #e0f7f7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    header, footer {
-      background-color: #0cc;
+    /* Header */
+    header {
+      background: linear-gradient(90deg, #00c2c2, #ff7f50);
       color: white;
-      padding: 1em 0;
+      padding: 1rem 0;
+      box-shadow: 0 3px 10px rgba(255,127,80,0.4);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeInDown 0.6s forwards;
     }
-
-    .container {
+    .nav-container {
       width: 90%;
       max-width: 1200px;
       margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-
     .logo {
       display: flex;
       align-items: center;
+      font-weight: 700;
+      font-size: 1.4rem;
+      letter-spacing: 0.05em;
+      user-select: none;
     }
-
     .logo img {
       width: 40px;
-      margin-right: 10px;
+      margin-right: 12px;
+      filter: drop-shadow(0 0 3px #00c2c2);
     }
-
     nav ul {
-      list-style: none;
       display: flex;
-      gap: 15px;
+      list-style: none;
+      gap: 25px;
+      margin: 0;
       padding: 0;
     }
-
     nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      transition: background 0.3s ease, color 0.3s ease;
     }
-
+    nav ul li a:hover,
     nav ul li a.active {
-      text-decoration: underline;
+      background: rgba(255,127,80,0.8);
+      color: #fff;
+      text-decoration: none;
+      box-shadow: 0 0 8px #ff7f50;
     }
 
-    h1, h3 {
-      color: #008b8b;
+    /* Hauptbereich */
+    main {
+      flex-grow: 1;
+      width: 90%;
+      max-width: 1200px;
+      margin: 2rem auto 3rem;
+    }
+    main h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: #00e5e5;
+      text-align: center;
+      text-shadow: 0 0 8px #00e5e5;
+      margin-bottom: 0.2em;
+      user-select: none;
+    }
+    main p.lead {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #a0eaea;
+      max-width: 600px;
+      margin: 0 auto 3rem;
+      user-select: none;
     }
 
-    .shop {
-      padding: 2em 0;
-    }
-
+    /* Produkt Grid */
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2em;
-      margin-top: 2em;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.8rem;
     }
-
     .product-card {
-      background-color: white;
+      background: linear-gradient(135deg, #072026, #0a292f);
       border-radius: 16px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-      padding: 1em;
-      text-align: center;
-      transition: transform 0.3s ease;
+      box-shadow:
+        0 4px 8px rgba(0,194,194,0.2),
+        0 8px 16px rgba(255,127,80,0.2);
+      padding: 1.6rem 1.4rem 2.4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      user-select: none;
     }
-
     .product-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px);
+      box-shadow:
+        0 10px 20px rgba(0,194,194,0.5),
+        0 20px 40px rgba(255,127,80,0.5);
     }
-
     .product-card img {
-      max-width: 100%;
-      border-radius: 8px;
-      margin-bottom: 1em;
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      margin-bottom: 1.2rem;
+      filter: drop-shadow(0 0 6px #00c2c2);
+      border-radius: 12px;
+      background: #022526;
+      padding: 12px;
     }
-
-    .price {
-      font-size: 1.2em;
-      font-weight: bold;
-      color: #007d7d;
-    }
-
-    .buy-button {
-      display: inline-block;
-      margin-top: 1em;
-      padding: 0.7em 1.4em;
-      background-color: #00c2c2;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
-
-    .buy-button:hover {
-      background-color: #00aaaa;
-    }
-
-    footer p {
-      margin: 0;
+    .product-card h3 {
+      margin: 0 0 0.5rem 0;
+      color: #00ffff;
+      text-shadow: 0 0 6px #00ffff;
+      font-size: 1.5rem;
+      font-weight: 700;
       text-align: center;
     }
-  </style> -->
+    .product-card p {
+      color: #b0eaea;
+      font-size: 1rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      min-height: 3em;
+    }
+    .price {
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: #ff7f50;
+      text-shadow: 0 0 6px #ff7f50;
+    }
+
+    /* Buy Button mit Farbverlauf */
+    .buy-button {
+      margin-top: auto;
+      background: linear-gradient(45deg, #00c2c2, #ff7f50);
+      color: white;
+      font-weight: 700;
+      padding: 0.85rem 1.8rem;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.35s ease, box-shadow 0.35s ease;
+      box-shadow: 0 4px 10px rgba(0,194,194,0.6);
+      user-select: none;
+      display: inline-block;
+      text-decoration: none;
+      font-size: 1.1rem;
+      user-select: none;
+    }
+    .buy-button:hover,
+    .buy-button:focus {
+      background: linear-gradient(135deg, #ff7f50, #00c2c2);
+      box-shadow: 0 6px 15px rgba(255,127,80,0.8);
+      outline: none;
+    }
+
+    /* Rabatt Info mit Animation */
+    .discounts {
+      margin-top: 3rem;
+      background: rgba(0,194,194,0.1);
+      border-radius: 14px;
+      padding: 1.2rem 1.5rem;
+      color: #a0eaea;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-align: center;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 0 20px rgba(0,194,194,0.3);
+      animation: pulseGlow 4s ease-in-out infinite;
+      user-select: none;
+    }
+
+    /* Footer */
+    footer {
+      background: #022026;
+      color: #66e0e0;
+      padding: 1.5rem 0;
+      text-align: center;
+      font-size: 0.9rem;
+      user-select: none;
+      box-shadow: inset 0 1px 8px #00c2c2;
+    }
+    footer a {
+      color: #00c2c2;
+      margin: 0 0.7rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    footer a:hover {
+      color: #ff7f50;
+      text-decoration: underline;
+    }
+    footer ul {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 0 0;
+      display: inline-flex;
+      gap: 1rem;
+      user-select: none;
+    }
+
+    /* Animationen */
+    @keyframes fadeInDown {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 0 12px rgba(0,194,194,0.5);
+        color: #a0eaea;
+      }
+      50% {
+        box-shadow: 0 0 20px rgba(255,127,80,0.7);
+        color: #ff7f50;
+      }
+    }
+
+    /* Responsiv */
+    @media (max-width: 480px) {
+      .product-card img {
+        width: 100px;
+        height: 100px;
+      }
+      main h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <header id="header">
     <div class="container nav-container">
       <div class="logo">
-        <img src="icons/default.png" alt="BlitzClient Logo">
+        <img src="icons/default.png" alt="BlitzClient Logo" />
         <span>BlitzClient</span>
       </div>
       <nav>
@@ -134,69 +285,56 @@
     </div>
   </header>
 
-  <main>
-    <section class="hero">
-      <h1>Shop - Coming Soon!</h1>
-      <p>Unser Shop ist derzeit in der Entwicklung. Bald findest du hier exklusive BlitzClient Produkte und Premium-Features!</p>
-    </section>
-  </main>
+  <main class="shop">
+    <h1>BlitzClient Shop</h1>
+    <p class="lead">Unterstütze die Entwicklung &amp; sichere dir exklusive Vorteile mit BlitzCoins!</p>
 
-  <!-- <main class="shop">
-    <div class="container">
-      <h1>BlitzClient Shop</h1>
-      <p>Unterstütze die Entwicklung & sichere dir exklusive Vorteile mit BlitzCoins!</p>
+    <div class="product-grid" role="list">
+      <article class="product-card" role="listitem" tabindex="0" aria-label="BlitzClient+ Premium-Zugang zu Features, Mods und mehr. Preis: 1000 BlitzCoins">
+        <img src="shop/blitzplus.png" alt="BlitzClient+ Icon" />
+        <h3>BlitzClient+</h3>
+        <p>Premium-Zugang zu Features, Mods und mehr.</p>
+        <span class="price">1.000 BlitzCoins (~10 €)</span>
+        <a href="https://blitzclient.gumroad.com/l/blitzplus" class="buy-button" target="_blank" rel="noopener noreferrer">Jetzt upgraden</a>
+      </article>
 
-      <div class="product-grid">
-        <div class="product-card">
-          <img src="shop/blitzplus.png" alt="BlitzClient+">
-          <h3>BlitzClient+</h3>
-          <p>Premium-Zugang zu Features, Mods und mehr.</p>
-          <span class="price">1.000 BlitzCoins (~10 €)</span>
-          <a href="https://blitzclient.gumroad.com/l/blitzplus" class="buy-button" target="_blank">Jetzt upgraden</a>
-        </div>
+      <article class="product-card" role="listitem" tabindex="0" aria-label="Exklusives Cape Zeige deinen Support auf jedem Server. Preis: 500 BlitzCoins">
+        <img src="shop/cape.png" alt="Exklusives Cape Icon" />
+        <h3>Exklusives Cape</h3>
+        <p>Zeige deinen Support auf jedem Server.</p>
+        <span class="price">500 BlitzCoins (~5 €)</span>
+        <a href="https://blitzclient.gumroad.com/l/cape" class="buy-button" target="_blank" rel="noopener noreferrer">Kaufen</a>
+      </article>
 
-        <div class="product-card">
-          <img src="shop/cape.png" alt="Exklusives Cape">
-          <h3>Exklusives Cape</h3>
-          <p>Zeige deinen Support auf jedem Server.</p>
-          <span class="price">500 BlitzCoins (~5 €)</span>
-          <a href="https://blitzclient.gumroad.com/l/cape" class="buy-button" target="_blank">Kaufen</a>
-        </div>
-
-        <div class="product-card">
-          <img src="shop/badge.png" alt="Supporter Badge">
-          <h3>Supporter Badge</h3>
-          <p>Ein kleines Symbol für große Unterstützung.</p>
-          <span class="price">300 BlitzCoins (~3 €)</span>
-          <a href="https://blitzclient.gumroad.com/l/badge" class="buy-button" target="_blank">Kaufen</a>
-        </div>
-      </div>
-
-      <p style="margin-top: 2em;">Rabatte mit Codes: <strong>NEUESJAHR (20%)</strong>, <strong>GRINDATTACK (15%)</strong>, <strong>KNATTER654 (5%)</strong> – Nur für BlitzClient+</p>
+      <article class="product-card" role="listitem" tabindex="0" aria-label="Supporter Badge Ein kleines Symbol für große Unterstützung. Preis: 300 BlitzCoins">
+        <img src="shop/badge.png" alt="Supporter Badge Icon" />
+        <h3>Supporter Badge</h3>
+        <p>Ein kleines Symbol für große Unterstützung.</p>
+        <span class="price">300 BlitzCoins (~3 €)</span>
+        <a href="https://blitzclient.gumroad.com/l/badge" class="buy-button" target="_blank" rel="noopener noreferrer">Kaufen</a>
+      </article>
     </div>
-  </main> -->
+
+    <p class="discounts" aria-live="polite">
+      Rabatte mit Codes: <strong>NEUESJAHR (20%)</strong>, <strong>GRINDATTACK (15%)</strong>, <strong>KNATTER654 (5%)</strong> – Nur für BlitzClient+
+    </p>
+  </main>
 
   <footer>
     <div class="container">
       <p>&copy; 2025 BlitzClient. Alle Rechte vorbehalten.</p>
-      <li><a href="impressum.html" class="active">Impressum</a></li>
-			<li><a href="datenschutz.html" class="active">Datenschutz</a></li>
-			<li><a href="nutzung.html" class="active">Nutzungsbedingungen</a></li>
+      <ul>
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+        <li><a href="nutzung.html">Nutzungsbedingungen</a></li>
+      </ul>
     </div>
   </footer>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Check if user came from a different page
-      const referrer = document.referrer;
-      const currentHost = window.location.host;
-      const isFromSameSite = referrer.includes(currentHost);
       const header = document.getElementById('header');
-      
-      // Only add animation if coming from another page in the same site
-      if (isFromSameSite && referrer !== window.location.href) {
-        header.classList.add('fade-in-header');
-      }
+      header.classList.add('fade-in-header');
     });
   </script>
 </body>
