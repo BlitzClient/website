@@ -5,8 +5,172 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>News | BlitzClient</title>
-	<link rel="stylesheet" href="styles.css">
 	<link rel="icon" type="image/ico" href="icons/favicon.ico" />
+
+	<!-- Eingebettetes CSS -->
+	<style>
+		:root {
+			--tuerkis: #00f0ff;
+			--orange: #ff8800;
+			--bg: #0d0d0d;
+			--text: #ffffff;
+			--accent: #222;
+		}
+
+		* {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			font-family: 'Segoe UI', sans-serif;
+			background: var(--bg);
+			color: var(--text);
+			line-height: 1.6;
+		}
+
+		header {
+			background: var(--accent);
+			padding: 15px 0;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+		}
+
+		.container {
+			width: 90%;
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+
+		.nav-container {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.logo {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+
+		.logo img {
+			height: 40px;
+		}
+
+		nav ul {
+			list-style: none;
+			display: flex;
+			gap: 20px;
+		}
+
+		nav a {
+			color: var(--text);
+			text-decoration: none;
+			transition: color 0.2s;
+		}
+
+		nav a.active,
+		nav a:hover {
+			color: var(--tuerkis);
+		}
+
+		main {
+			padding: 40px 0;
+		}
+
+		.news-section h1 {
+			font-size: 2.5rem;
+			color: var(--tuerkis);
+			margin-bottom: 30px;
+		}
+
+		.news-item {
+			background: #1a1a1a;
+			padding: 25px;
+			border-left: 5px solid var(--orange);
+			margin-bottom: 30px;
+			border-radius: 10px;
+			transition: transform 0.2s;
+		}
+
+		.news-item:hover {
+			transform: scale(1.02);
+		}
+
+		.news-item h2 {
+			margin-bottom: 10px;
+			color: var(--orange);
+		}
+
+		.news-item .date {
+			font-size: 0.9rem;
+			color: #aaa;
+			margin-bottom: 15px;
+		}
+
+		.news-item ul {
+			padding-left: 20px;
+			margin-top: 10px;
+		}
+
+		.button {
+			display: inline-block;
+			margin-top: 15px;
+			background: var(--tuerkis);
+			color: #000;
+			padding: 10px 18px;
+			border-radius: 6px;
+			text-decoration: none;
+			font-weight: bold;
+			transition: background 0.3s;
+		}
+
+		.button:hover {
+			background: #00c5cc;
+		}
+
+		footer {
+			background: #111;
+			padding: 30px 0;
+			margin-top: 50px;
+			font-size: 0.9rem;
+		}
+
+		footer p {
+			color: #888;
+			margin: 5px 0;
+		}
+
+		footer ul {
+			list-style: none;
+			display: flex;
+			gap: 15px;
+			margin-top: 10px;
+			padding: 0;
+		}
+
+		footer a {
+			color: var(--tuerkis);
+			text-decoration: none;
+		}
+
+		.fade-in-header {
+			animation: fadeIn 0.6s ease-in-out;
+		}
+
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+				transform: translateY(-10px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+	</style>
 </head>
 
 <body>
@@ -28,23 +192,20 @@
 	</header>
 
 	<main class="container">
-		<section class="news-section fade-in-section">
+		<section class="news-section">
 			<h1>Neueste Nachrichten</h1>
 
 			<article class="news-item">
 				<h2>Beta 0.1</h2>
 				<p class="date">20. April 2025</p>
-				<p>Die Beta 0.1 ist nach 2 Tagen Entwicklung draußen – aber man kann noch nicht viel tun. Das wird sich
-					bald
-					ändern, denn wir arbeiten fleißig an der 0.2. Bleibt gespannt!</p>
+				<p>Die Beta 0.1 ist nach 2 Tagen Entwicklung draußen – aber man kann noch nicht viel tun. Das wird sich bald ändern, denn wir arbeiten fleißig an der 0.2. Bleibt gespannt!</p>
 				<a href="download.html" class="button">Download für Linux</a>
 			</article>
 
 			<article class="news-item">
 				<h2>Beta 0.2 – Nices Design im Launcher</h2>
 				<p class="date">3. Mai 2025</p>
-				<p>Wir haben die neueste Beta-Version (0.2) mit vielen Verbesserungen veröffentlicht. Die wichtigsten
-					Highlights:</p>
+				<p>Wir haben die neueste Beta-Version (0.2) mit vielen Verbesserungen veröffentlicht. Die wichtigsten Highlights:</p>
 				<ul>
 					<li>Download jetzt möglich für Windows, macOS, Linux und als .jar</li>
 					<li>Modernes Launcher-Design mit Microsoft-Login</li>
@@ -52,7 +213,6 @@
 				</ul>
 				<a href="download.html" class="button">Jetzt herunterladen</a>
 			</article>
-
 		</section>
 	</main>
 
@@ -63,28 +223,24 @@
 				BlitzLauncher is an unofficial, open-source Minecraft launcher.
 				This project is not affiliated with Mojang, Microsoft, or Minecraft.
 				All rights to Minecraft, Mojang, and Microsoft assets and trademarks belong to their respective owners.
-
-				The login functionality uses official Microsoft OAuth2 services and does not store any login credentials
-				or personal data.
-				All authentication occurs locally on the user&apos;s device and is fully initiated by the user.
 			</p>
 			<p>This website and launcher do not collect or store any personal data.
 				All login procedures use Microsoft&apos;s official OAuth2 endpoints, and no passwords or tokens are stored by BlitzLauncher or its developers.</p>
-			<li><a href="impressum.html" class="active">Impressum</a></li>
-			<li><a href="datenschutz.html" class="active">Datenschutz</a></li>
-			<li><a href="nutzung.html" class="active">Nutzungsbedingungen</a></li>
+			<ul class="footer-links">
+				<li><a href="impressum.html">Impressum</a></li>
+				<li><a href="datenschutz.html">Datenschutz</a></li>
+				<li><a href="nutzung.html">Nutzungsbedingungen</a></li>
+			</ul>
 		</div>
 	</footer>
 
 	<script>
 		document.addEventListener('DOMContentLoaded', () => {
-			// Check if user came from a different page
 			const referrer = document.referrer;
 			const currentHost = window.location.host;
 			const isFromSameSite = referrer.includes(currentHost);
 			const header = document.getElementById('header');
 
-			// Only add animation if coming from another page in the same site
 			if (isFromSameSite && referrer !== window.location.href) {
 				header.classList.add('fade-in-header');
 			}
@@ -93,3 +249,4 @@
 </body>
 
 </html>
+
