@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Geheime Seite</title>
+  <style>
+    body {
+      background-color: #000;
+      color: yellow;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 48px;
+      transform: rotate(-6deg);
+      animation: float 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes float {
+      from { transform: rotate(-6deg) translateY(0); }
+      to { transform: rotate(-6deg) translateY(5px); }
+    }
+
+    p {
+      font-size: 20px;
+      color: #888;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Wie hast du das gefunden???</h1>
+  <p>👀 Das sollte eigentlich niemand sehen...</p>
+</body>
+</html>
